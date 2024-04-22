@@ -1,5 +1,5 @@
 const ratio = 1 / 1
-const prefix = 'Twist 1'
+const prefix = 'Pappus'
 
 const features = {} 
 let resizeTmr = null 
@@ -12,71 +12,83 @@ let forceDownloaded = false
 const animated = false
 let nextFrame = null 
 
-$fx.params([
-  {
-    id: "number_id",
-    name: "number of Circles",
-    type: "number",
-    options: {
-      min: 100,
-      max: 500,
-      step: 10,
-    },
-  },
 
-  {
-    id: "number_id2",
-    name: "Twist",
-    type: "number",
-    options: {
-      min: Math.PI,
-      max: 5*Math.PI,
-      step: Math.PI/10,
-    },
-  }
-])
 
 
 const setup = () => {
 
-  const backgroundColours =  ['#FFC0CB','#FFA07A'     ,'#FFFFE0'       ,'#E6E6FA'    ,'#ADFF2F'        ,'#66CDAA'          ,'#E0FFFF'   ,'#FFE4C4','#F5F5DC','#DCDCDC'  ,'#FFF0F5'       ,'#FFF8DC']
-  const backgroundNames   =  ['Pink'   ,'LightSalmon' ,'LightYellow'   ,'Lavender'   ,'GreenYellow'    ,'MediumAquamarine' ,'LightCyan' ,'Bisque' ,'Beige'  ,'Gainsboro','LavenderBlush' ,'Cornsilk']
-
+  const backgroundColours =  ['#FFF8DC'   ,'#F5DEB3' ,'	#F5F5DC' ,'#DCDCDC'     ,'#FFFAFA'    ,'#E0FFFF'   ,'#FFE4C4'  ,'#FFF0F5'       ,'#FFE4E1'    ,'#DDA0DD' ,'#F0F8FF'   , '#D5D6EA']
+  const backgroundNames   =  ['Cornsilk'  ,'Wheat'   ,'Beige'    ,'Gainsboro'   ,'Snow'       ,'LightCyan' ,'Bisque'   ,'LavenderBlush' ,'MistyRose'  ,'Plum'    ,'AliceBlue' , 'Pastel Light Blue']
   const backgroundIndex = Math.floor($fx.rand() * backgroundColours.length)
 
-  const foregroundColours = ['#f5a04e', '#931a1e', '#fad2db', '#f2e73d', '#14b9dc', '#d65a9c', '#f2f8ef', '#395370']
+  const BodyColours    =  ['#A0522D	','#556B2F	'     ,'#4682B4	' ,'#8B4513'    ,'#800000','#D2691E'  , '#571B7E'    ,'#D291BC'        , '#F8B88B'      , '#8B8000'     , '#FFFF33'    , '#6AFB92'  ]
+  const BodycolorNames =  ['Sienna'  ,'DarkOliveGreen','SteelBlue','SaddleBrown','Maroon' ,'Chocolate', 'Purple Iris', 'Pastel Violet' , 'Pastel Orange',  'Dark Yellow', 'Neon Yellow', 'Dragon Green'  ]
+  const BodycolorIndex = Math.floor($fx.rand() * BodyColours.length)
+
+  const hairColours    =  ['#00FA9A'          ,'#5F9EA0'   ,'#B0E0E6'    ,'#F4A460'   ,'#C0C0C0','#F0FFF0'  ,'#BC8F8F	'  ,'#16E2F5'         ,'#FDBD01'  ,'#C04000' , '#800517'  , '#E56E94']
+  const haircolorNames =  ['MediumSpringGreen','CadetBlue' ,'PowderBlue' ,'SandyBrown','Silver' ,'HoneyDew' ,'RosyBrown	','Bright Turquoise','Neon Gold','Mahogany', 'Deep Red' , 'Blush Red']
+  const haircolorIndex = Math.floor($fx.rand() * hairColours.length)
+
 
   features.backgroundColour = backgroundColours[backgroundIndex]
-  features.lineColours = foregroundColours
+  features.bodyColour = BodyColours[BodycolorIndex]
+  features.hairColour = hairColours[haircolorIndex]
+
 
   const readableFeaturesObj = {}
   readableFeaturesObj.Background = backgroundNames[backgroundIndex]
+  readableFeaturesObj['Body Color'] = BodycolorNames [BodycolorIndex]
+  readableFeaturesObj['Hair Color'] = haircolorNames[haircolorIndex]
+
 
   $fx.features(readableFeaturesObj)
   console.table(readableFeaturesObj)
+  
 }
 
 setup()
 
 
-function drawCircle(ctx, x, y, radius, color,linewidth,sblur) {
-  ctx.lineCap = 'ROUND'
-  ctx.lineWidth =linewidth 
-  ctx.beginPath(); 
-  ctx.shadowBlur = sblur
-  ctx.shadowColor = color;
-  ctx.arc(x, y, radius, 0,Math.PI * 2); 
-  ctx.strokeStyle = color; 
+function drawTree(ctx,startX, startY, length, angle, depth, branchWidth,color1,color2) {
+
+  var newLength, newAngle, newDepth, maxBranch = 12,
+      endX, endY, maxAngle = 2 * Math.PI / 6, subBranches;
+
+  ctx.beginPath();
+  ctx.moveTo(startX, startY);
+  endX = startX + length * Math.cos(angle);
+  endY = startY + length * Math.sin(angle);
+  ctx.lineWidth = branchWidth;
+  ctx.lineTo(endX, endY);
+  ctx.lineCap = "round";
+{
+  if (depth <= 1) {
+    ctx.strokeStyle = color1;
+  }
+  if (depth > 1){
+     ctx.strokeStyle = color2;
+  }
+}
   ctx.stroke();
+  newDepth = depth - 1;
+
+  if(!newDepth) {
+    return;
+  }
+
+  subBranches = ($fx.rand() * (maxBranch - 1)) +1;
+  branchWidth *= 0.618;
+
+  for (var i = 0; i < subBranches; i++) {
+    newAngle = angle - maxAngle+$fx.rand()*maxAngle*2;
+    newLength = length *0.618;
+    drawTree(ctx,endX, endY, newLength, newAngle, newDepth, branchWidth,color1,color2);
+  }
 
 }
 
-const randomRgbColor = () => {
-  let r = Math.floor($fx.rand() * (119,192)); 
-  let g = Math.floor($fx.rand() * (158,252)); 
-  let b = Math.floor($fx.rand() * (129,208)); 
-  return 'rgb(' + r + ',' + g + ',' + b + ')';
-};
+
+
 
 const drawCanvas = async () => {
 
@@ -90,16 +102,14 @@ const drawCanvas = async () => {
 
   ctx.fillStyle = features.backgroundColour
   ctx.fillRect(0, 0, w, h)
+  Color1= features.hairColour;
+  Color2= features.bodyColour;
+ // indexcolor = Math.floor($fx.rand() * features.lineColours.length);
 
-  circlenum=$fx.getParam("number_id");
-  B=$fx.getParam("number_id2");
-
-   for (let i=0;i<circlenum;i++) {
-    A=$fx.rand()*(Math.PI/2,B)  
-    cirColor=randomRgbColor() ;
-    indexcolor = Math.floor($fx.rand() * features.lineColours.length);
-    drawCircle(ctx, w/2+w*(Math.sin(A))/3, h/2+h*(Math.cos(A))/3, A*w/(6*B),cirColor,$fx.rand()*(w/(30*B),w/(20*B)),B)
-   }
+  X1=w/4+$fx.rand()*w/2;
+  Y1=6*h/10+$fx.rand()*h/3;
+  Angle1=-11*Math.PI /20+$fx.rand()*2*Math.PI/20; 
+  drawTree(ctx, X1, Y1, w/4, Angle1, 9, w/100,Color1,Color2);
 
   if (!thumbnailTaken) {
     $fx.preview()
