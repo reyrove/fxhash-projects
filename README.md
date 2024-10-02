@@ -1,7 +1,3 @@
-Here is the **README** file you can use for your GitHub repository:
-
----
-
 # Welcome to the fxhash Projects Repository by Reyrove! 🎨✨
 
 This repository is a collection of **unique generative art pieces** created with **JavaScript**, **p5.js**, and the **fxhash platform**. Each project in this repository is designed to create **infinite variations** of beautiful, code-driven artworks that can be minted as **NFTs (Non-Fungible Tokens)** on **fxhash**.
