@@ -28,8 +28,6 @@ How to Use
 
     Explore and Experiment: Every project comes with parameters that can be customized to create new variations of the art. Feel free to tweak the code, adjust the color palettes, change the grid sizes, or introduce new shapes and algorithms. Let your creativity run wild!
 
-FxHash Platform
-
 These projects are designed for the fxhash platform, a generative art marketplace that allows collectors to mint unique iterations of generative artworks. The use of fxrand() allows every minted piece to be entirely unique and distinct from others, making every collector's artwork a one-of-a-kind piece.
 
 If you want to mint your own version of these artworks or create something new, head over to fxhash and explore the possibilities.
@@ -41,10 +39,8 @@ You are more than welcome to modify the code and create your own generative art.
     Instagram: @frost_bond_coders
     Facebook: frostbond.coders
 
-Full Code
-
-For full code examples, including explanations and breakdowns of each project, click here to visit our GitHub repository.
-
 Each project is a journey through code, where randomness, mathematics, and creativity come together to produce something truly beautiful and unique. Dive in, experiment, and share your love for generative art with the world.
 
-With love, Sparrow and Reyhan from ReyRove Studios
+With love,
+
+Reyrove
