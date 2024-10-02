@@ -40,11 +40,7 @@ These projects are designed for the fxhash platform, a generative art marketplac
 If you want to mint your own version of these artworks or create something new, head over to fxhash and explore the possibilities.
 Share Your Creations!
 
-You are more than welcome to modify the code and create your own generative art. If you do, I would love to see what you create! Share your work with me on:
-
-X (formerly Twitter): @reyrove
-Instagram: @frost_bond_coders
-Facebook: frostbond.coders
+You are more than welcome to modify the code and create your own generative art. If you do, I would love to see what you create! Share your work with me on X, Instagram and Facebook. 
 
 Each project is a journey through code, where randomness, mathematics, and creativity come together to produce something truly beautiful and unique. Dive in, experiment, and share your love for generative art with the world.
 
