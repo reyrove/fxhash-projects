@@ -61,7 +61,7 @@ Simply open the respective `index.html` file of each project in your browser to 
 
 ## License
 
-This repository is licensed under the **MIT License**. Feel free to use, modify, and distribute the code, but please give credit where it's due!
+This repository is open to the public. You are encouraged to explore, learn from, and build upon the works within it. However, please remember to attribute any public use or modification of these works to me. Feel free to use, modify, and distribute the code, but please give credit where it's due!
 
 ## Minting on fxhash
 
@@ -73,7 +73,7 @@ You are more than welcome to modify the code and create your own generative art.
 Share your work with me on:
 - **[X (formerly Twitter)](https://twitter.com/reyrove)**
 - **[Instagram](https://www.instagram.com/frost_bond_coders)**
-- **[Facebook](https://www.facebook.com/frostbond.coders)**
+- **[Facebook](https://www.facebook.com/profile.php?id=61567123732584)**
 
 ## Final Words
 
