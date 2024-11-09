@@ -73,7 +73,6 @@ You are more than welcome to modify the code and create your own generative art.
 Share your work with me on:
 - **[X (formerly Twitter)](https://twitter.com/reyrove)**
 - **[Instagram](https://www.instagram.com/frost_bond_coders)**
-- **[Facebook](https://www.facebook.com/profile.php?id=61567123732584)**
 
 ## Final Words
 
