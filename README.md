@@ -71,8 +71,8 @@ If you want to mint your own version of these artworks or create something new, 
 
 You are more than welcome to modify the code and create your own generative art. If you do, I would love to see what you create!  
 Share your work with me on:
-- **[X (formerly Twitter)](https://twitter.com/reyrove)**
-- **[Instagram](https://www.instagram.com/frost_bond_coders)**
+- **[Email](mailto:reyhanehdaneshdoost@gmail.com)**
+- **[LinkedIn](https://www.linkedin.com/in/reyhaneh-daneshdoost-730481160/)**
 
 ## Final Words
 
