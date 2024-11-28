@@ -1,4 +1,4 @@
-# Welcome to the fxhash Projects Repository by Reyrove! 🎨✨
+# Welcome to the fxhash Projects Repository by Reyrove!
 
 This repository is a collection of **unique generative art pieces** created with **JavaScript**, **p5.js**, and the **fxhash platform**. Each project in this repository is designed to create **infinite variations** of beautiful, code-driven artworks that can be minted as **NFTs (Non-Fungible Tokens)** on **fxhash**.
 
@@ -71,9 +71,8 @@ If you want to mint your own version of these artworks or create something new, 
 
 You are more than welcome to modify the code and create your own generative art. If you do, I would love to see what you create!  
 Share your work with me on:
-- **[X (formerly Twitter)](https://twitter.com/reyrove)**
-- **[Instagram](https://www.instagram.com/frost_bond_coders)**
-- **[Facebook](https://www.facebook.com/profile.php?id=61567123732584)**
+- **[Email](mailto:reyhanehdaneshdoost@gmail.com)**
+- **[LinkedIn](https://www.linkedin.com/in/reyhaneh-daneshdoost-730481160/)**
 
 ## Final Words
 
