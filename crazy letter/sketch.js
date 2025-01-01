@@ -1,5 +1,5 @@
 const ratio = 1 / 1
-const prefix = 'Crazy letter'
+const prefix = 'Christmas Art'
 
 const features = {} 
 let resizeTmr = null 
@@ -12,15 +12,14 @@ let forceDownloaded = false
 const animated = false
 let nextFrame = null 
 
-
 const setup = () => {
 
-  const backgroundColours =  ['#FFC0CB','#FFA07A'     ,'#FFFFE0'       ,'#E6E6FA'    ,'#ADFF2F'        ,'#66CDAA'          ,'#E0FFFF'   ,'#FFE4C4','#F5F5DC','#DCDCDC'  ,'#FFF0F5'       ,'#FFF8DC']
-  const backgroundNames   =  ['Pink'   ,'LightSalmon' ,'LightYellow'   ,'Lavender'   ,'GreenYellow'    ,'MediumAquamarine' ,'LightCyan' ,'Bisque' ,'Beige'  ,'Gainsboro','LavenderBlush' ,'Cornsilk']
+  const backgroundColours =  ['#FF0000', '#006400', '#FFFFFF', '#FFD700', '#32CD32', '#8B0000', '#00FF00']
+  const backgroundNames   =  ['Red', 'DarkGreen', 'White', 'Gold', 'LimeGreen', 'DarkRed', 'Green']
 
   const backgroundIndex = Math.floor($fx.rand() * backgroundColours.length)
 
-  const foregroundColours = ['#f5a04e', '#931a1e', '#fad2db', '#f2e73d', '#14b9dc', '#d65a9c', '#f2f8ef', '#395370']
+  const foregroundColours = ['#FFD700', '#FFFFFF', '#B22222', '#8B4513', '#006400', '#FF1493', '#FF6347']
   const foregroundNames =   []
   const foregroundIndex = Math.floor($fx.rand() * foregroundColours.length)
 
@@ -38,7 +37,7 @@ const setup = () => {
 
 setup()
 
-function drawLine(ctx, lineY,margin) {
+function drawLine(ctx, lineY, margin) {
   const canvas = document.getElementById('target')
   const w = canvas.width
   const range = map(lineY, margin * 2, w - margin * 2, 0, w/($fx.rand()*20+30));
@@ -73,23 +72,27 @@ const drawCanvas = async () => {
   const w = canvas.width
   const h = canvas.height
 
-
   const margin = w/($fx.rand()*20+50);
   
   ctx.fillStyle = features.backgroundColour
   ctx.fillRect(0, 0, w, h)
   ctx.strokeStyle = features.lineColours;
   ctx.lineWidth = w/($fx.rand()*300+200);
-  ctx.shadowColor=features.lineColours;
-  ctx.shadowBlur=w/($fx.rand()*300+200);
+  ctx.shadowColor = features.lineColours;
+  ctx.shadowBlur = w/($fx.rand()*300+200);
 
-
+  // Draw a border that looks like a Christmas frame
   ctx.beginPath();
   ctx.rect(margin, margin, w - margin * 2, h - margin * 2);
+  ctx.lineWidth = 10;  // Thicker border for the festive feel
   ctx.stroke();
-  
+
+  // Draw snowflakes or circular patterns representing ornaments
   for (let y = margin * 2; y < h - margin * 2; y += w/($fx.rand()*50+50)) {
-    drawLine(ctx, y,margin);
+    drawLine(ctx, y, margin);
+    if ($fx.rand() > 0.7) {
+      drawSnowflake(ctx, y, w);  // Add a snowflake pattern
+    }
   }
 
   if (!thumbnailTaken) {
@@ -97,45 +100,47 @@ const drawCanvas = async () => {
     thumbnailTaken = true
   }
 
-
   if ('forceDownload' in urlParams && forceDownloaded === false) {
     forceDownloaded = true
     await autoDownloadCanvas()
-
     window.parent.postMessage('forceDownloaded', '*')
   }
-
 
   if (animated) {
     nextFrame = window.requestAnimationFrame(drawCanvas)
   }
 }
 
-const init = async () => {
+const drawSnowflake = (ctx, y, w) => {
+  const radius = $fx.rand() * 10 + 5; // Snowflake size
+  const xPos = $fx.rand() * w;
+  
+  ctx.beginPath();
+  ctx.arc(xPos, y, radius, 0, Math.PI * 2, false);  // Snowflake shape
+  ctx.fillStyle = '#FFFFFF';  // White snowflake
+  ctx.fill();
+}
 
+const init = async () => {
   window.addEventListener('resize', async () => {
-   
     clearTimeout(resizeTmr)
     resizeTmr = setTimeout(async () => {
       await layoutCanvas()
     }, 100)
   })
 
-
   document.addEventListener('keypress', async (e) => {
     e = e || window.event
-   
+
     if (e.key === 's' || 'S') autoDownloadCanvas()
   })
 
   await layoutCanvas()
 }
 
-
 const layoutCanvas = async (windowObj = window, urlParamsObj = urlParams) => {
- 
-  windowObj.cancelAnimationFrame(nextFrame)
 
+  windowObj.cancelAnimationFrame(nextFrame)
 
   const { innerWidth: wWidth, innerHeight: wHeight, devicePixelRatio = 1 } = windowObj
   let dpr = devicePixelRatio
@@ -152,7 +157,6 @@ const layoutCanvas = async (windowObj = window, urlParamsObj = urlParams) => {
 
   let targetHeight = cHeight
   let targetWidth = targetHeight * ratio
-
 
   if ('forceWidth' in urlParams) {
     targetWidth = parseInt(urlParams.forceWidth)
@@ -187,7 +191,6 @@ const autoDownloadCanvas = async () => {
     : `${prefix}_${$fx.hash}`
   element.setAttribute('download', filename)
 
-
   element.style.display = 'none'
   document.body.appendChild(element)
 
@@ -198,6 +201,5 @@ const autoDownloadCanvas = async () => {
 
   document.body.removeChild(element)
 }
-
 
 document.addEventListener('DOMContentLoaded', init)
