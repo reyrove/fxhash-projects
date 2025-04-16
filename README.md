@@ -1,4 +1,4 @@
-# Welcome to the fxhash Projects Repository by Reyrove! 🚀
+# Welcome to the fxhash Projects Repository! 🚀
 
 Welcome to the **creative playground** where **code meets art**. This is the ultimate collection of **generative art masterpieces**, powered by **JavaScript**, **p5.js**, and **fxhash**. Each project is a stunning blend of **randomness** and **algorithmic beauty**, creating **one-of-a-kind** pieces ready to be minted as **NFTs** on the **fxhash platform**.
 
